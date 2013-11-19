@@ -1,0 +1,76 @@
+﻿<div class="umb-panel" ng-controller="Snippets.GitHubController">
+    <div class="umb-panel-footer">
+        <div class="btn-toolbar umb-btn-toolbar pull-right">
+            <a href class="btn btn-link" ng-click="close()">
+                <localize key="cancel" />
+            </a>
+        </div>
+    </div>
+    
+    <div class="umb-modalcolumn-header">
+        <div class="umb-el-wrap umb-panel-buttons">
+            <div class="span6">
+                <div class="form-search">
+                    <i class="icon-search"></i>
+                    <input type="text" ng-model="searchTerm" class="umb-search-field search-query" placeholder="Filter...">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--
+    <div class="umb-modalcolumn-header">
+        <h1>Insert Snippet</h1>
+    </div>
+    -->
+
+    <div class="umb-panel-body umb-scrollable">
+
+        <div class="tab-content umb-control-group">
+
+            <div class="umb-pane">
+                <h4>GitHub Snippets</h4>
+                <h5>{{ repoUser.data }}/{{ repo.data }}</h5>
+
+                <ul class="unstyled">
+                    <li class="clearfix">
+                        <span class="pull-left">Navi.cshtml</span>
+                        <a href="#" class="btn btn-primary pull-right" ng-click="insertSnippet()" prevent-default><i class="icon icon-code"></i> Insert Snippet</a>
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left">Breadcrumbs.cshtml</span>
+                        <a href="#" class="btn btn-primary pull-right" ng-click="insertSnippet()" prevent-default><i class="icon icon-code"></i> Insert Snippet</a>
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left">Sitemap.cshtml</span>
+                        <a href="#" class="btn btn-primary pull-right" ng-click="insertSnippet()" prevent-default><i class="icon icon-code"></i> Insert Snippet</a>
+                    </li>
+
+                    <li ng-repeat="snippet in snippets | filter: searchTerm">
+                        {{ name }} <a href="#" class="btn btn-primary" ng-click="submit(snippet)" prevent-default><i class="icon icon-code"></i> Insert Snippet</a>
+                    </li>
+                </ul>
+
+                <hr/>
+
+                <h5>DEBUG</h5>
+                <textarea>
+                    {{ snippets | json }}
+                </textarea>
+                <br/>
+                <textarea>
+                    {{ repoUser | json }}
+                </textarea>
+                <br/>
+                
+                <textarea>
+                    {{ repo | json }}
+                </textarea>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

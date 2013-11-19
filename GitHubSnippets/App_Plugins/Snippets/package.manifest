@@ -1,0 +1,8 @@
+﻿{
+        propertyEditors: [],
+
+        javascript: [
+            '~/App_Plugins/Snippets/Snippets.Github.Controller.js',
+            '~/App_Plugins/Snippets/Snippet.Resource.js'
+        ]
+}

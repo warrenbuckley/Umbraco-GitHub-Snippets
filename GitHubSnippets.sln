@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubSnippets.Site", "GitHubSnippets.Site\GitHubSnippets.Site.csproj", "{E3E2C164-C724-4384-B1B5-19AD5E6BD026}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubSnippets", "GitHubSnippets\GitHubSnippets.csproj", "{75B340E5-1E17-4C56-9BDC-F0767BCD8376}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3E2C164-C724-4384-B1B5-19AD5E6BD026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E2C164-C724-4384-B1B5-19AD5E6BD026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E2C164-C724-4384-B1B5-19AD5E6BD026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E2C164-C724-4384-B1B5-19AD5E6BD026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75B340E5-1E17-4C56-9BDC-F0767BCD8376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75B340E5-1E17-4C56-9BDC-F0767BCD8376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75B340E5-1E17-4C56-9BDC-F0767BCD8376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75B340E5-1E17-4C56-9BDC-F0767BCD8376}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,5 @@
+GitHubSnippets.Site/App_Data/Logs/*
+GitHubSnippets.Site/App_Data/TEMP/ClientDependency/*
+GitHubSnippets.Site/App_Data/TEMP/ExamineIndexes/*
+GitHubSnippets.Site/App_Data/TEMP/PluginCache/*
+GitHubSnippets.Site/obj/Debug/*
