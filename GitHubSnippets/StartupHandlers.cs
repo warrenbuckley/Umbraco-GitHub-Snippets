@@ -44,8 +44,9 @@ namespace GitHubSnippets
                     var javascript = @"UmbClientMgr.openAngularModalWindow({
                                         template: '/app_plugins/snippets/snippet-dialog.html',
                                         callback: function(data) {
-                                            UmbClientMgr.contentFrame().UmbEditor.Insert('Hello', 'World');
-                                            top.UmbSpeechBubble.ShowMessage('success', 'Snippet Inserted', 'Yipee you have sucessfully inserted a snippet from GitHub called: ' + data);
+                                            var snippet = JSON.parse(data.code);
+                                            UmbClientMgr.contentFrame().UmbEditor.Insert(snippet, '');
+                                            top.UmbSpeechBubble.ShowMessage('success', 'Snippet Inserted', 'Yipee you have sucessfully inserted a snippet from GitHub called: ' + data.name);
                                         }
                                     });";
                     

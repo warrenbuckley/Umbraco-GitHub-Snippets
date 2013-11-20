@@ -1,6 +1,13 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Helpers;
+using System.Web.Http;
+using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
 using Octokit;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
@@ -10,6 +17,8 @@ namespace GitHubSnippets.Controllers
     [PluginController("Snippets")]
     public class GitHubController : UmbracoAuthorizedApiController
     {
+        private static string _baseAPIUrl = "https://api.github.com";
+
         /// <summary>
         /// 
         /// </summary>
@@ -33,10 +42,10 @@ namespace GitHubSnippets.Controllers
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async Task<ContentsResponse> GetContent(string path)
+        public async Task<JToken> GetContent(string path)
         {
             //Get path from parameter
-            if (path.StartsWith("/"))
+            if (path.Length > 1 && path.StartsWith("/"))
             {
                 path = path.TrimStart('/');
             }
@@ -45,9 +54,22 @@ namespace GitHubSnippets.Controllers
             var repoUser    = Settings.GetSetting("RepositoryUser");
             var repo        = Settings.GetSetting("RepositoryName");
 
-            var github  = new GitHubClient(new ProductHeaderValue("UmbracoGitHubSnippets"));
-            var content = await github.Repository.Content.GetContents(repoUser, repo, path);
+            //Format API Url to request
+            var apiUrl = string.Format("{0}/repos/{1}/{2}/contents/{3}", _baseAPIUrl, repoUser, repo, path);
 
+            HttpClient client               = new HttpClient();
+            HttpResponseMessage response    = await client.GetAsync(apiUrl);
+
+            //If not success code throw a 404 not found
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound); 
+            }
+
+            //The remote JSON we recieve - gets it as a string need to return a nice JSON object
+            var content = await response.Content.ReadAsAsync<JToken>();
+
+            //Return the JSON
             return content;
         }
 
@@ -59,7 +81,7 @@ namespace GitHubSnippets.Controllers
         public async Task<string> GetContentDecoded(string path)
         {
             //Get path from parameter
-            if (path.StartsWith("/"))
+            if (path.Length > 1 && path.StartsWith("/"))
             {
                 path = path.TrimStart('/');
             }
@@ -68,11 +90,23 @@ namespace GitHubSnippets.Controllers
             var repoUser    = Settings.GetSetting("RepositoryUser");
             var repo        = Settings.GetSetting("RepositoryName");
 
-            var github  = new GitHubClient(new ProductHeaderValue("UmbracoGitHubSnippets"));
-            var content = await github.Repository.Content.GetContents(repoUser, repo, path);
+            //Format API Url to request
+            var apiUrl = string.Format("{0}/repos/{1}/{2}/contents/{3}", _baseAPIUrl, repoUser, repo, path);
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+            //If not success code throw a 404 not found
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            //The remote JSON we recieve - gets it as a string need to return a nice JSON object
+            var content = await response.Content.ReadAsAsync<JToken>();
 
             //Decode the base64 content of the file
-            var decodedContent = base64Decode(content.Content);
+            var decodedContent = base64Decode(content["content"].ToString());
 
             return decodedContent;
         }

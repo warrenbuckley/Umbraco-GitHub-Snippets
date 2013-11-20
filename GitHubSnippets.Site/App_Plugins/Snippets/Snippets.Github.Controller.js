@@ -5,17 +5,31 @@
     $scope.repo     = snippetResource.getRepoName();
 
     //Get Snippets from Resource (API)
-    snippetResource.getSnippets('/Razor/Navi/Navi.cshtml').then(function (snippets) {
+    snippetResource.getSnippets('/').then(function (snippets) {
         $scope.snippets = snippets;
     });
     
     //Insert Snippet - button click
-    $scope.insertSnippet = function () {
+    $scope.insertSnippet = function (selectedSnippet) {
+        
+        var selectedSnippetPath = selectedSnippet.path;
 
-        var repo = "test";
+        //Get the snippet to decode from the Resource aka API
+        snippetResource.getSnippetDecoded(selectedSnippetPath).then(function (snip) {
+            
+            //Create a snippet object to pass through to callback
+            var snippet = {
+                name: selectedSnippet.name,
+                code: snip.data
+            };
 
-        //Submit dialog - fires callback event for open dialog
-        $scope.submit(repo);
+            //Debugging
+            console.log(snippet);
+
+            //Submit dialog - fires callback event for open dialog
+            $scope.submit(snippet);
+        });
+
     };
     
 });

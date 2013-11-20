@@ -1,0 +1,21 @@
+This adds a button to the template & partial view editor allowing you to insert Razor snippets from a GitHub Repo.
+
+By default it fetches the snippets from a community GitHub Snippet repo, but you can easily change the repository to one of your own if you wish.
+
+By default it uses this repo:
+https://github.com/warrenbuckley/Umbraco-Snippets
+
+****************************
+Configuration
+****************************
+You can configure this package by finding the config file in the /App_Plugins/Snippets folder called Snippets.config
+The two settings are the GitHub Repository Username and the GitHub Repository Name, so this builds up a request to
+https://github.com/warrenbuckley/Umbraco-Snippets
+
+
+<snippets>
+  <settings>
+    <setting key="RepositoryUser" value="warrenbuckley"/>
+    <setting key="RepositoryName" value="Umbraco-Snippets"/>
+  </settings>
+</snippets>

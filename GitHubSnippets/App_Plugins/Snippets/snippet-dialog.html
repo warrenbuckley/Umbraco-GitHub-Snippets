@@ -33,40 +33,10 @@
                 <h5>{{ repoUser.data }}/{{ repo.data }}</h5>
 
                 <ul class="unstyled">
-                    <li class="clearfix">
-                        <span class="pull-left">Navi.cshtml</span>
-                        <a href="#" class="btn btn-primary pull-right" ng-click="insertSnippet()" prevent-default><i class="icon icon-code"></i> Insert Snippet</a>
-                    </li>
-                    <li class="clearfix">
-                        <span class="pull-left">Breadcrumbs.cshtml</span>
-                        <a href="#" class="btn btn-primary pull-right" ng-click="insertSnippet()" prevent-default><i class="icon icon-code"></i> Insert Snippet</a>
-                    </li>
-                    <li class="clearfix">
-                        <span class="pull-left">Sitemap.cshtml</span>
-                        <a href="#" class="btn btn-primary pull-right" ng-click="insertSnippet()" prevent-default><i class="icon icon-code"></i> Insert Snippet</a>
-                    </li>
-
-                    <li ng-repeat="snippet in snippets | filter: searchTerm">
-                        {{ name }} <a href="#" class="btn btn-primary" ng-click="submit(snippet)" prevent-default><i class="icon icon-code"></i> Insert Snippet</a>
+                    <li ng-repeat="snippet in snippets.data | filter: searchTerm" class="clearfix">
+                        <span class="pull-left">{{ snippet.name }}</span> <a href="#" class="btn btn-primary pull-right" ng-click="insertSnippet(snippet)" prevent-default><i class="icon icon-code"></i> Insert Snippet</a>
                     </li>
                 </ul>
-
-                <hr/>
-
-                <h5>DEBUG</h5>
-                <textarea>
-                    {{ snippets | json }}
-                </textarea>
-                <br/>
-                <textarea>
-                    {{ repoUser | json }}
-                </textarea>
-                <br/>
-                
-                <textarea>
-                    {{ repo | json }}
-                </textarea>
-
             </div>
         </div>
     </div>

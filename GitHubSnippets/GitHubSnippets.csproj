@@ -266,6 +266,9 @@
   </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>xcopy /y $(TargetPath) $(SolutionDir)\GitHubSnippets.Site\bin
+
+xcopy /y $(TargetDir)Octokit.dll $(SolutionDir)\GitHubSnippets.Site\bin
+
 xcopy /y /e $(ProjectDir)\App_Plugins $(SolutionDir)\GitHubSnippets.Site\App_Plugins</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

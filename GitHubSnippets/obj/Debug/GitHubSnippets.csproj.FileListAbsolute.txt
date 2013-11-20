@@ -77,6 +77,6 @@ C:\inetpub\wwwroot\Personal\GitHubSnippets\GitHubSnippets\GitHubSnippets\bin\umb
 C:\inetpub\wwwroot\Personal\GitHubSnippets\GitHubSnippets\GitHubSnippets\bin\umbraco.editorControls.xml
 C:\inetpub\wwwroot\Personal\GitHubSnippets\GitHubSnippets\GitHubSnippets\bin\umbraco.MacroEngines.xml
 C:\inetpub\wwwroot\Personal\GitHubSnippets\GitHubSnippets\GitHubSnippets\bin\umbraco.providers.xml
-C:\inetpub\wwwroot\Personal\GitHubSnippets\GitHubSnippets\GitHubSnippets\obj\Debug\GitHubSnippets.csprojResolveAssemblyReference.cache
 C:\inetpub\wwwroot\Personal\GitHubSnippets\GitHubSnippets\GitHubSnippets\obj\Debug\GitHubSnippets.dll
 C:\inetpub\wwwroot\Personal\GitHubSnippets\GitHubSnippets\GitHubSnippets\obj\Debug\GitHubSnippets.pdb
+C:\inetpub\wwwroot\Personal\GitHubSnippets\GitHubSnippets\GitHubSnippets\bin\GitHubSnippets.dll.config
