@@ -20,33 +20,35 @@ namespace GitHubSnippets.Controllers
         private static string _baseAPIUrl = "https://api.github.com";
 
         /// <summary>
-        /// 
+        /// Get's the respository user from config file
         /// </summary>
-        /// <returns></returns>
         public string GetRepositoryUser()
         {
+            //Returns a value from our settings config file
             return Settings.GetSetting("RepositoryUser");
         }
 
         /// <summary>
-        /// 
+        /// Get's the respository name from config file
         /// </summary>
         /// <returns></returns>
         public string GetRepositoryName()
         {
+            //Returns a value from our settings config file
             return Settings.GetSetting("RepositoryName");
         }
 
         /// <summary>
-        /// 
+        /// Fetch contents of a specific file or folder from a GitHub Repo
         /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
+        /// <param name="path">The path to the file or folder to request</param>
         public async Task<JToken> GetContent(string path)
         {
             //Get path from parameter
+            //If the path length is greater than 1 AND it starts with a /
             if (path.Length > 1 && path.StartsWith("/"))
             {
+                //Lets remove the starting /
                 path = path.TrimStart('/');
             }
 
@@ -57,6 +59,7 @@ namespace GitHubSnippets.Controllers
             //Format API Url to request
             var apiUrl = string.Format("{0}/repos/{1}/{2}/contents/{3}", _baseAPIUrl, repoUser, repo, path);
 
+            //Do an async call to the GitHub API
             HttpClient client               = new HttpClient();
             HttpResponseMessage response    = await client.GetAsync(apiUrl);
 
@@ -66,7 +69,8 @@ namespace GitHubSnippets.Controllers
                 throw new HttpResponseException(HttpStatusCode.NotFound); 
             }
 
-            //The remote JSON we recieve - gets it as a string need to return a nice JSON object
+            //The remote JSON we recieve - gets it as a string
+            //Need to convert it to a JSON object
             var content = await response.Content.ReadAsAsync<JToken>();
 
             //Return the JSON
@@ -74,15 +78,16 @@ namespace GitHubSnippets.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Fetch decoded contents of a specific file from a GitHub Repo
         /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
+        /// <param name="path">The path to the file or folder to request</param>
         public async Task<string> GetContentDecoded(string path)
         {
             //Get path from parameter
+            //If the path length is greater than 1 AND it starts with a /
             if (path.Length > 1 && path.StartsWith("/"))
             {
+                //Lets remove the starting /
                 path = path.TrimStart('/');
             }
 
@@ -93,6 +98,7 @@ namespace GitHubSnippets.Controllers
             //Format API Url to request
             var apiUrl = string.Format("{0}/repos/{1}/{2}/contents/{3}", _baseAPIUrl, repoUser, repo, path);
 
+            //Do an async call to the GitHub API
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(apiUrl);
 
@@ -105,7 +111,7 @@ namespace GitHubSnippets.Controllers
             //The remote JSON we recieve - gets it as a string need to return a nice JSON object
             var content = await response.Content.ReadAsAsync<JToken>();
 
-            //Decode the base64 content of the file
+            //Decode the base64 content of the file using the helper
             var decodedContent = base64Decode(content["content"].ToString());
 
             return decodedContent;
