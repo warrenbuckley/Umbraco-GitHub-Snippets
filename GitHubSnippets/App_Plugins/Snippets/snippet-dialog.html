@@ -18,23 +18,18 @@
         </div>
     </div>
     
-    <!--
-    <div class="umb-modalcolumn-header">
-        <h1>Insert Snippet</h1>
-    </div>
-    -->
-
     <div class="umb-panel-body umb-scrollable">
-
         <div class="tab-content umb-control-group">
-
             <div class="umb-pane">
                 <h4>GitHub Snippets</h4>
                 <h5>{{ repoUser.data }}/{{ repo.data }}</h5>
 
                 <ul class="unstyled">
                     <li ng-repeat="snippet in snippets.data | filter: searchTerm" class="clearfix">
-                        <span class="pull-left">{{ snippet.name }}</span> <a href="#" class="btn btn-primary pull-right" ng-click="insertSnippet(snippet)" prevent-default><i class="icon icon-code"></i> Insert Snippet</a>
+                        <span class="pull-left">{{ snippet.name }}</span> 
+                        <a href="#" class="btn btn-primary pull-right" ng-click="insertSnippet(snippet)" prevent-default>
+                            <i class="icon icon-code"></i> Insert Snippet
+                        </a>
                     </li>
                 </ul>
             </div>
