@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -14,6 +14,8 @@ using Umbraco.Web.WebApi;
 
 namespace GitHubSnippets.Controllers
 {
+    // Web API Calls can be access from this URL
+    // /umbraco/snippets/*MethodName*
     [PluginController("Snippets")]
     public class GitHubController : UmbracoAuthorizedApiController
     {
