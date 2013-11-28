@@ -19,14 +19,18 @@ namespace GitHubSnippets
             //throw new NotImplementedException();
         }
 
+        
         public void OnApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
+            //When Umbraco Has Started Up...
+            //Hook into the UmbracoPage Load event - which is any Umbraco backoffice page
             umbracoPage.Load += umbracoPage_Load;
         }
 
+
         void umbracoPage_Load(object sender, EventArgs e)
         {
-            //Cast it as an Umbraco Page
+            //Cast sender as an Umbraco Page object
             var pageReference = (umbracoPage)sender;
 
             //Get the path of the current page
@@ -35,12 +39,17 @@ namespace GitHubSnippets
             //Check if the path of the page ends in either of the following...
             if (path.EndsWith("settings/views/editview.aspx") == true || path.EndsWith("settings/edittemplate.aspx"))
             {
+                //Try & get body panel control from the page (as still .NET page)
                 var c2 = GetPanel1Control(pageReference);
 
+                //If we have found it then...
                 if (c2 != null)
                 {
+                    //Cast the control we found as an Umbraco Panel object
                     var panel = (UmbracoPanel)c2;
 
+                    //This is the Javascript we want to run when our button is clicked
+                    //Including what happens when the dialog closes & invokes our callback
                     var javascript = @"UmbClientMgr.openAngularModalWindow({
                                         template: '/app_plugins/snippets/snippet-dialog.html',
                                         callback: function(data) {
@@ -50,7 +59,7 @@ namespace GitHubSnippets
                                         }
                                     });";
                     
-                    //Add new button 
+                    //Lets create a new button and add it to the panel control
                     var snippetBtn              = panel.Menu.NewButton(-1);
                     snippetBtn.Text             = "Insert Snippet";
                     snippetBtn.ToolTip          = "Insert Snippet";
@@ -64,13 +73,12 @@ namespace GitHubSnippets
         }
 
 
+        //Get the body panel control
         private Control GetPanel1Control(umbracoPage up)
         {
             var cph = (ContentPlaceHolder)up.FindControl("body");
 
             return cph.FindControl("body_Panel1_container");
-
-            //return CompatibilityHelper.IsVersion7OrNewer ? cph.FindControl("body_Panel1_container") : cph.FindControl("Panel1");
         }
     }
 }
